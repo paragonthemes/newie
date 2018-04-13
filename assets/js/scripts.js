@@ -15,12 +15,12 @@
 	    		});
 
 	    		//Sticky header
-			    var headerHeight = $('.header-nav').height();
+			    var headerHeight = $('.main-navigation').height();
 			    $(window).scroll(function() {
 			        if ($(window).scrollTop() > headerHeight) {
-			            $('.header-nav').addClass('fixed-top');
+			            $('.main-navigation').addClass('fixed-top');
 			        } else {
-			            $('.header-nav').removeClass('fixed-top');
+			            $('.main-navigation').removeClass('fixed-top');
 			        }
 			    });
 	    

@@ -771,6 +771,22 @@ footer article:after,
 .right-sidebar .right-s-bar{
 	float: left;
 }
+#comments {
+    background: #f1f1f1;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+#comments .submit{
+	background: rgba(255, 255, 255, 0) none repeat scroll 0 0;
+	color: #151515 !important;
+	display: inline-block;
+	letter-spacing: 2px;
+	padding: 10px 20px !important;
+	text-transform: uppercase;
+	transition: all 0.3s ease 0s;
+	border: 1px solid #333;
+	position: relative;
+}
 @media (max-width: 768px) {
 	.left-sidebar .left-s-bar,
 	.right-sidebar .right-s-bar {
@@ -956,10 +972,11 @@ object {
 	overflow:hidden;
 }
 .navbar-header {
-    clear: both;
-    width: 100%;
-    text-align: center;
-    padding: 0;
+	clear: both;
+	width: 100%;
+	text-align: center;
+	padding: 0;
+	float: left;
 }
 .navbar{
   margin:0;
@@ -970,7 +987,12 @@ object {
     padding-left: 15px;
 }
 .site-title a{
-	color: #333;
+	font-size: 50px;
+	margin: 0;
+	padding-left: 15px;
+	font-family: 'Merriweather', serif;
+	color: #000;
+	font-weight: 700;
 }
 .site-description {
     font-size: 13px;
@@ -1248,11 +1270,12 @@ object {
 		position:relative;
 	}
 	.top-right {
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    width: 100%;
-	    border: 1px solid #eeeeee;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		border: 1px solid #eeeeee;
+		background: #fff;
 	}
 	.social-links{
 		border:0;
@@ -1277,10 +1300,21 @@ object {
 	    padding-left: 10px;
 	}
 	.header-nav {
-	    float: left;
-	    width: 100%;
-	    border: 1px solid rgb(234, 234, 234);
-	    margin-top: -6px;
+		float: left;
+		width: 100%;
+		border: 1px solid rgb(234, 234, 234);
+		margin-top: 0;
+	}
+	.site-title {
+	    font-size: 40px;
+	    padding:0;
+	}
+	.navbar-header{
+		padding:12px 0;
+	}
+	.search-form-wrapper {
+	    width: 250px;
+	    right:0;
 	}
 }
 
@@ -1387,7 +1421,7 @@ object {
 
 
 
-.header-nav.fixed-top {
+.main-navigation.fixed-top {
 	z-index: 99999;
 	visibility: visible;
 	transform: translateY(0);
@@ -1397,7 +1431,7 @@ object {
 /*====================================
 STICKY HEADER
 ====================================*/
-.header-nav.fixed-top {
+.main-navigation.fixed-top {
 	background: #f1f1f1;
 	position: fixed;
 	left: 0;
@@ -1412,6 +1446,9 @@ STICKY HEADER
 	margin:0;
 	border:0;
 }
+.main-navigation.fixed-top .header-nav{
+	margin:0;
+}
 .header-nav .main-navigation ul li a {
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -1420,6 +1457,7 @@ STICKY HEADER
 .header-nav.main-navigation ul ul li a {
 	color: #333;
 }
+
 
 /* CPMMENT */
 .site-main .comment-navigation,
@@ -1581,11 +1619,32 @@ STICKY HEADER
 }
 @media (max-width: 767px){
 	#featured-slider .feature-description figcaption{
-		padding: 10px 20px;
-		top:30px;
+		padding:20px;
 	}
 	#featured-slider .feature-description figcaption h2{
-		font-size: 18px!important;
+		font-size: 18px !important;
+	}
+
+}
+@media (max-width: 480px){
+	#featured-slider .feature-description figcaption{
+		padding: 5px 10px;
+	}
+	#featured-slider .feature-description figcaption h2{
+		font-size: 15px !important;
+		margin: 5px 0;
+	}
+	#featured-slider .feature-description figcaption .read-more{
+		margin:0;
+		font-size: 10px;
+		letter-spacing: 2px;
+		padding: 6px 14px !important;
+	}
+	#featured-slider .owl-prev, 
+	#featured-slider .owl-next {
+	    height: 35px;
+	    line-height: 35px;
+	    width: 35px;
 	}
 }
 /*--------------------------------------------------------------
@@ -1620,6 +1679,14 @@ STICKY HEADER
 .promo-area a:hover figure img {
 	opacity: 0.8;
 	transition: all 0.3s ease 0s;
+}
+@media (max-width: 767px){
+	.promo-area  [class*="col-"]{
+		margin-bottom: 20px;
+	}
+	.promo-area  [class*="col-"]:last-child{
+		margin-bottom: 0;
+	}
 }
 
 
@@ -1726,11 +1793,13 @@ footer .widget h2::before{
 footer .widget h2 span{
 	background-color: #F7F7F7;
 }
-.widget_categories li a::before,
+.widget_pages li:before,
+.widget_categories li::before,
 .widget_recent_entries li a::before,
-.widget_archive li a::before,
-.widget_categories li a::before,
-.top-footer ul.menu li a::before{
+.widget_archive li::before,
+.widget_categories li::before,
+.top-footer ul.menu li::before,
+.widget_recent_comments li:before{
 	display: inline-block;
 	font-family: "FontAwesome";
 	font-size: 13px;
@@ -1745,20 +1814,25 @@ footer .widget h2 span{
 	text-transform: none;
 	color: #333;
 }
-.widget_categories li a::before,
-.widget_recent_entries li a::before,
-.widget_archive li a::before,
-.widget_categories li a::before,
-.top-footer ul.menu li a::before{
+.widget_pages li:before,
+.widget_categories li::before,
+.widget_recent_entries li::before,
+.widget_archive li::before,
+.widget_categories li::before,
+.top-footer ul.menu li::before,
+.widget_recent_comments li:before{
 	content: "\f101";
 	left: 0;
 	position: absolute;
-	top: 8px;
+	top: 11px;
+	font-family: "FontAwesome";
 }
-.widget_categories li a,
-.widget_recent_entries li a,
-.widget_categories li a,
-.top-footer ul.menu li a{
+.widget_pages li,
+.widget_categories li,
+.widget_recent_entries li,
+.widget_categories li,
+.widget_recent_comments li,
+.top-footer ul.menu li{
 	display: block;
 	position: relative;
 }
@@ -1770,23 +1844,20 @@ footer .widget h2 span{
 .widget ul li{
 	overflow: hidden;
 }
-.widget ul li a{
+.widget ul li{
     border-bottom: 1px solid #eee;
     color: #333;
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.05em;
-	padding: 7px 7px 7px 20px;
+	padding: 10px 20px;
     transition: all 0.3s ease 0s;
 }
-.widget ul li:last-child a{
+.widget ul li:last-child{
 	border-bottom: 0;
 }
 .widget ul li a:hover{
 	color: #333;
-}
-.widget ul li:first-child{
-	padding-top: 0;
 }
 .widget .recentcomments a{
 border: 0;
@@ -1795,7 +1866,7 @@ border: 0;
 	float: left;
 	list-style: none;
 }
-.widget_meta ul li a{
+.widget_meta ul li{
     border: 1px solid #7e7e7e!important;
     color: #7e7e7e;
     float: left;
@@ -1825,6 +1896,20 @@ border: 0;
 /* Make sure select elements fit in widgets. */
 .widget select {
 	max-width: 100%;
+}
+.widget select{
+    width: 100%;
+    padding: 5px;
+}
+.textwidget img {
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.textwidget strong {
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 /* author*/
@@ -2167,7 +2252,7 @@ article.format-quote .content-wrap::after {
 }
 
 .site-content{
-	padding-top: 50px;
+	padding-top: 0;
 }
 
 .entry-header {
@@ -2305,7 +2390,11 @@ article.format-audio .newie-audio-section{
   margin:0;
   padding:0;
 }
-
+@media (max-width: 767px){
+	.more-area.text-right {
+	    text-align: center;
+	}
+}
 /*--------------------------------------------------------------
 ## Page Header
 --------------------------------------------------------------*/
@@ -2535,7 +2624,7 @@ footer .top-footer{
   padding:20px;
   border-radius: 0;
   background:#333;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 nav.breadcrumb-trail.breadcrumbs {
     display: table;
